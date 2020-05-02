@@ -26,10 +26,22 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import contentfulClient from '@/plugins/contentful'
 
 export default {
   components: {
     Logo
+  },
+  asyncData({ env }) {
+    return contentfulClient
+      .getEntries()
+      .then((entries) => {
+        console.log(entries.items)
+        return {
+          sample: entries.items
+        }
+      })
+      .catch(console.error)
   }
 }
 </script>
