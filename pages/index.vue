@@ -1,36 +1,37 @@
 <template>
   <div class="container">
     <div>
-      <logo />
+      <!-- <logo /> -->
       <h1 class="title">
         wordbook
       </h1>
       <h2 class="subtitle">
-        My Daily English Words
+        今日のテスト
       </h2>
+      <div v-for="word in words" :key="word.word">
+        <p>{{ word.fields.word }}</p>
+        <p>{{ word.fields.meaning }}</p>
+      </div>
+
       <div class="links">
-        <a href="https://nuxtjs.org/" target="_blank" class="button--green">
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+        <nuxt-link :to="{ name: 'new' }" class="button--green">
+          新しく登録する
+        </nuxt-link>
+        <nuxt-link :to="{ name: 'all' }" class="button--grey">
+          登録単語一覧
+        </nuxt-link>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+// import Logo from '@/components/Logo.vue'
 import contentfulClient from '@/plugins/contentful'
 
 export default {
   components: {
-    Logo
+    // Logo
   },
   asyncData({ env }) {
     return contentfulClient
@@ -38,7 +39,7 @@ export default {
       .then((entries) => {
         console.log(entries.items)
         return {
-          sample: entries.items
+          words: entries.items
         }
       })
       .catch(console.error)
