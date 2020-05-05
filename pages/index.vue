@@ -11,9 +11,14 @@
       <div>
         <button @click="testStart()">テストスタート</button>
       </div>
+      <p>{{ yesterday }}</p>
       <div v-for="content in contents" :key="content.word">
-        <p>{{ content.fields.word }}</p>
-        <p>{{ content.fields.meaning }}</p>
+        <p v-if="content.sys.createdAt.includes(yesterday)">
+          {{ content.fields.word }}
+        </p>
+        <p v-if="content.sys.createdAt.includes(yesterday)">
+          {{ content.fields.meaning }}
+        </p>
       </div>
 
       <div class="links">
