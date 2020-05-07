@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>登録単語一覧</h1>
-    <div v-for="content in contents" :key="content.word" class="all_word-list">
+    <div
+      v-for="content in contents"
+      :key="content.sys.id"
+      class="all_word-list"
+    >
       <p>{{ content.fields.word }}:</p>
       <p>{{ content.fields.meaning }}</p>
     </div>
