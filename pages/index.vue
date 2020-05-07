@@ -12,7 +12,7 @@
         <button @click="testStart()">テストスタート</button>
       </div>
       <p>{{ yesterday }}</p>
-      <div v-for="content in contents" :key="content.word">
+      <div v-for="content in contents" :key="content.sys.id">
         <p v-if="content.sys.createdAt.includes(yesterday)">
           {{ content.fields.word }}
         </p>

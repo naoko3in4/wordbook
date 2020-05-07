@@ -66,6 +66,9 @@ export default {
    */
   env: {
     CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
+    CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN,
+    CTF_FOR_MY_APP_TOKEN: process.env.CTF_FOR_MY_APP_TOKEN,
+    CTF_ENVIRONMENT_ID: process.env.CTF_ENVIRONMENT_ID,
+    CTF_CONTENT_TYPE_ID: process.env.CTF_CONTENT_TYPE_ID
   }
 }
