@@ -6,18 +6,25 @@
         wordbook
       </h1>
       <div>
-        <button class="button--blue" @click="testStart()">
+        <button
+          class="button--blue"
+          :class="{ isStarted: isStartActive }"
+          @click="testStart()"
+        >
           テストスタート
         </button>
       </div>
       <ul
-        v-for="content in contents"
+        v-for="(content, index) in contents"
         :key="content.sys.id"
         class="max-w-sm rounded overflow-hidden shadow-lg content__wrapper"
       >
-        <li v-if="content.sys.createdAt.includes(yesterday)" class="px-6 py-4">
+        <li
+          v-if="content.sys.createdAt.includes(dateYesterday)"
+          class="px-6 py-4"
+        >
           <p class="font-bold text-xl mb-2">
-            {{ content.fields.word }}<span @click="deleteWord()">✗</span>
+            {{ content.fields.word }}<span @click="deleteWord(index)">✗</span>
           </p>
         </li>
       </ul>
@@ -39,6 +46,21 @@
 import contentfulClient from '@/plugins/contentful'
 import moment from '@/plugins/moment'
 
+const months = {
+  Jan: '01',
+  Feb: '02',
+  Mar: '03',
+  Apr: '04',
+  May: '05',
+  Jun: '06',
+  Jul: '07',
+  Aug: '08',
+  Sep: '09',
+  Oct: '10',
+  Nov: '11',
+  Dec: '12'
+}
+
 export default {
   components: {
     // Logo
@@ -57,46 +79,32 @@ export default {
   },
   data() {
     return {
-      yesterday: null,
-      isActive: true
+      isStartActive: false,
+      dateYesterday: null
     }
   },
   methods: {
     testStart() {
-      // yesterday (English)
-      const yesterdayStrLong = moment().subtract(1, 'days')._d
-      const yesterdayStr = yesterdayStrLong.toString().substring(4, 15)
-      const yesterdayMonth = yesterdayStr.toString().substring(0, 3)
-      const months = {
-        Jan: '01',
-        Feb: '02',
-        Mar: '03',
-        Apr: '04',
-        May: '05',
-        Jun: '06',
-        Jul: '07',
-        Aug: '08',
-        Sep: '09',
-        Oct: '10',
-        Nov: '11',
-        Dec: '12'
-      }
+      const dateYesterdayStrLong = moment().subtract(1, 'days')._d
+      const dateYesterdayStr = dateYesterdayStrLong.toString().substring(4, 15)
+      const dateYesterdayMonth = dateYesterdayStr.toString().substring(0, 3)
+      this.isStartActive = !this.isStartActive
+
       for (const [key, value] of Object.entries(months)) {
-        if (key === yesterdayMonth) {
-          const formatedYesterday =
-            yesterdayStr.substring(7, 11) +
+        if (key === dateYesterdayMonth) {
+          const formatedDateYesterday =
+            dateYesterdayStr.substring(7, 11) +
             '-' +
             value +
             '-' +
-            yesterdayStr.substring(4, 6)
-          this.yesterday = formatedYesterday
-          console.log(this.yesterday)
+            dateYesterdayStr.substring(4, 6)
+          this.dateYesterday = formatedDateYesterday
+          console.log(this.dateYesterday)
         }
       }
     },
-    deleteWord() {
-      this.isActive = false
-      console.log(this.isActive)
+    deleteWord(index) {
+      this.contents.splice(index, 1)
     }
   }
 }
@@ -129,5 +137,9 @@ export default {
 
 .links {
   padding-top: 15px;
+}
+
+.isStarted {
+  display: none;
 }
 </style>
