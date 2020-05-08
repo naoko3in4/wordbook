@@ -1,14 +1,16 @@
 <template>
-  <div>
-    <h1>登録単語一覧</h1>
-    <div
-      v-for="content in contents"
-      :key="content.sys.id"
-      class="all_word-list"
-    >
-      <p>{{ content.fields.word }}:</p>
-      <p>{{ content.fields.meaning }}</p>
+  <div class="container all__wrapper">
+    <h2>登録単語一覧</h2>
+    <div class="all_word_list__wrapper">
+      <ul
+        v-for="content in contents"
+        :key="content.sys.id"
+        class="all_word-list"
+      >
+        <li>{{ content.fields.word }}:{{ content.fields.meaning }}</li>
+      </ul>
     </div>
+
     <nuxt-link :to="{ name: 'index' }" class="button--grey">
       indexに戻る
     </nuxt-link>
@@ -33,7 +35,16 @@ export default {
 </script>
 
 <style>
+.all__wrapper {
+  margin-top: 20px;
+}
+
+.all_word_list__wrapper {
+  margin: 0 auto;
+  max-width: 200px;
+}
+
 .all_word-list {
-  display: flex;
+  text-align: left;
 }
 </style>
