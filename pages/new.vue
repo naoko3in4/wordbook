@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <h1>newページ</h1>
+  <div class="container">
     <nuxt-link :to="{ name: 'index' }" class="button--grey">
       indexに戻る
     </nuxt-link>
@@ -36,7 +35,9 @@
           placeholder="正解率"
         />
       </label>
-      <button type="submit" @click.prevent="postWord()">送信</button>
+      <button type="submit" class="button--green" @click.prevent="postWord()">
+        送信
+      </button>
     </form>
   </div>
 </template>
