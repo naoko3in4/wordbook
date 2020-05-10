@@ -104,6 +104,9 @@ export default {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+/* Quicksand font */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
+
 .index__wrapper {
   display: flex;
   justify-content: center;
