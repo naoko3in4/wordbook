@@ -73,7 +73,6 @@ html {
 
 .container {
   margin: 0 auto;
-  margin-bottom: 20px;
   min-height: 100vh;
   align-items: center;
   text-align: center;
