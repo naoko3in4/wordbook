@@ -22,17 +22,16 @@
             :key="content.sys.id"
             class="max-w-sm rounded overflow-hidden shadow-lg content__wrapper"
           >
-            <li class="px-6 py-4">
+            <li class="px-6 py-4" @click="deleteWord(index)">
               <p class="font-bold text-xl mb-2">
-                {{ content.fields.word
-                }}<span class="delete-btn" @click="deleteWord(index)">✗</span>
+                {{ content.fields.word }}<span class="delete-btn">✗</span>
               </p>
             </li>
           </ul>
         </div>
       </div>
       <div v-else>
-        <p>昨日登録した単語はありません</p>
+        <p>回答できる単語はありません</p>
       </div>
 
       <div class="links">
