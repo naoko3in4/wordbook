@@ -15,7 +15,7 @@
     </div>
 
     <nuxt-link :to="{ name: 'index' }" class="button--grey">
-      indexに戻る
+      戻る
     </nuxt-link>
   </div>
 </template>
