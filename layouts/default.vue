@@ -77,4 +77,8 @@ html {
   align-items: center;
   text-align: center;
 }
+
+.back__btn {
+  margin: 0 auto;
+}
 </style>
