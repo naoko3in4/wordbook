@@ -1,20 +1,27 @@
 <template>
-  <div class="container">
-    <nuxt-link :to="{ name: 'index' }" class="button--grey">
-      indexに戻る
+  <div class="container new_wrapper">
+    <nuxt-link :to="{ name: 'index' }" class="button--grey back__btn new-back">
+      戻る
     </nuxt-link>
-    <form>
+    <form class="register__container">
       <label for="単語">
-        <input v-model="formData.word" type="text" placeholder="単語を入力" />
+        <input
+          v-model="formData.word"
+          type="text"
+          placeholder="単語を入力"
+          class="write__item"
+        />
       </label>
       <label for="意味">
         <input
           v-model="formData.meaning"
           type="text"
           placeholder="意味を入力"
+          class="write__item"
         />
       </label>
-      <label for="出題回数">
+      <!-- 今後活用するかも -->
+      <!-- <label for="出題回数">
         <input
           v-model="formData.appearanceCount"
           type="number"
@@ -34,8 +41,12 @@
           type="number"
           placeholder="正解率"
         />
-      </label>
-      <button type="submit" class="button--green" @click.prevent="postWord()">
+      </label> -->
+      <button
+        type="submit"
+        class="button--green send__btn"
+        @click.prevent="postWord()"
+      >
         送信
       </button>
     </form>
@@ -94,9 +105,39 @@ export default {
       //   return
       // }
       console.log(res)
+      this.formData.word = await null
+      this.formData.meaning = await null
+      this.formData.appearanceCount = await null
+      this.formData.correctCount = await null
+      this.formData.correctRate = await null
     }
   }
 }
 </script>
 
-<style></style>
+<style>
+.new_wrapper {
+  padding-top: 200px;
+}
+
+.register__container {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.new-back {
+  margin-bottom: 20px;
+}
+
+.write__item {
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 7px;
+}
+
+.send__btn {
+  margin: 0 auto;
+  width: 200px;
+}
+</style>

@@ -14,7 +14,7 @@
       </ul>
     </div>
 
-    <nuxt-link :to="{ name: 'index' }" class="button--grey">
+    <nuxt-link :to="{ name: 'index' }" class="button--grey back__btn">
       戻る
     </nuxt-link>
   </div>
@@ -39,13 +39,13 @@ export default {
 
 <style>
 .all__wrapper {
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .all_word_list__wrapper {
   margin: 0 auto;
   max-width: 350px;
-  max-height: 600px;
+  max-height: 450px;
   overflow: scroll;
   margin-bottom: 30px;
   background: #fff;
