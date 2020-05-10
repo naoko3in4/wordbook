@@ -39,12 +39,14 @@ export default {
 
 <style>
 .all__wrapper {
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .all_word_list__wrapper {
   margin: 0 auto;
   max-width: 350px;
+  max-height: 600px;
+  overflow: scroll;
   margin-bottom: 30px;
   background: #fff;
   padding: 20px;
