@@ -5,29 +5,35 @@
       <h1 class="title">
         wordbook
       </h1>
-      <div>
-        <button
-          class="button--blue"
-          :class="{ isStarted: isStartActive }"
-          @click="testStart()"
-        >
-          テストスタート
-        </button>
+      <div v-if="contentsCreatedAtYesterday.length > 0">
+        <div>
+          <button
+            class="button--blue"
+            :class="{ isStarted: isStartActive }"
+            @click="testStart()"
+          >
+            テストスタート
+          </button>
+        </div>
+
+        <div v-if="isShown">
+          <ul
+            v-for="(content, index) in contentsCreatedAtYesterday"
+            :key="content.sys.id"
+            class="max-w-sm rounded overflow-hidden shadow-lg content__wrapper"
+          >
+            <li class="px-6 py-4">
+              <p class="font-bold text-xl mb-2">
+                {{ content.fields.word
+                }}<span class="delete-btn" @click="deleteWord(index)">✗</span>
+              </p>
+            </li>
+          </ul>
+        </div>
       </div>
-      <ul
-        v-for="(content, index) in contents"
-        :key="content.sys.id"
-        class="max-w-sm rounded overflow-hidden shadow-lg content__wrapper"
-      >
-        <li
-          v-if="content.sys.createdAt.includes(dateYesterday)"
-          class="px-6 py-4"
-        >
-          <p class="font-bold text-xl mb-2">
-            {{ content.fields.word }}<span @click="deleteWord(index)">✗</span>
-          </p>
-        </li>
-      </ul>
+      <div v-else>
+        <p>昨日登録した単語はありません</p>
+      </div>
 
       <div class="links">
         <nuxt-link :to="{ name: 'new' }" class="button--green">
@@ -46,21 +52,6 @@
 import contentfulClient from '@/plugins/contentful'
 import moment from '@/plugins/moment'
 
-const months = {
-  Jan: '01',
-  Feb: '02',
-  Mar: '03',
-  Apr: '04',
-  May: '05',
-  Jun: '06',
-  Jul: '07',
-  Aug: '08',
-  Sep: '09',
-  Oct: '10',
-  Nov: '11',
-  Dec: '12'
-}
-
 export default {
   components: {
     // Logo
@@ -70,7 +61,6 @@ export default {
       .getEntries()
       .then((entries) => {
         console.log(entries.items)
-
         return {
           contents: entries.items
         }
@@ -80,31 +70,30 @@ export default {
   data() {
     return {
       isStartActive: false,
-      dateYesterday: null
+      isShown: false,
+      contentsCreatedAtYesterday: []
     }
+  },
+  computed: {
+    //
+  },
+  mounted() {
+    const dateYesterday = moment().subtract(1, 'days')._d
+    const contentsBoolean = this.contents.filter((content) => {
+      const contentDate = moment(content.sys.createdAt)._d
+      return moment(contentDate).isSame(dateYesterday, 'day')
+    })
+    const yesterdayContents = contentsBoolean
+    this.contentsCreatedAtYesterday = yesterdayContents
+    console.log('contentsCreatedAtYesterday', this.contentsCreatedAtYesterday)
   },
   methods: {
     testStart() {
-      const dateYesterdayStrLong = moment().subtract(1, 'days')._d
-      const dateYesterdayStr = dateYesterdayStrLong.toString().substring(4, 15)
-      const dateYesterdayMonth = dateYesterdayStr.toString().substring(0, 3)
       this.isStartActive = !this.isStartActive
-
-      for (const [key, value] of Object.entries(months)) {
-        if (key === dateYesterdayMonth) {
-          const formatedDateYesterday =
-            dateYesterdayStr.substring(7, 11) +
-            '-' +
-            value +
-            '-' +
-            dateYesterdayStr.substring(4, 6)
-          this.dateYesterday = formatedDateYesterday
-          console.log(this.dateYesterday)
-        }
-      }
+      this.isShown = !this.isShown
     },
     deleteWord(index) {
-      this.contents.splice(index, 1)
+      this.contentsCreatedAtYesterday.splice(index, 1)
     }
   }
 }
@@ -141,5 +130,12 @@ export default {
 
 .isStarted {
   display: none;
+}
+
+.delete-btn {
+  margin-left: 10px;
+  color: #0a6095;
+  font-size: 14px;
+  font-weight: 700;
 }
 </style>
