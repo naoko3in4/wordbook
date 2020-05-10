@@ -31,7 +31,7 @@
         </div>
       </div>
       <div v-else>
-        <p>回答できる単語はありません</p>
+        <p class="no-word-text">回答できる単語はありません</p>
       </div>
 
       <div class="links">
@@ -138,6 +138,12 @@ export default {
   margin-left: 10px;
   color: #0a6095;
   font-size: 14px;
+  font-weight: 700;
+}
+
+.no-word-text {
+  margin-bottom: 10px;
+  color: #0a6095;
   font-weight: 700;
 }
 </style>
