@@ -25,52 +25,6 @@ html {
   margin: 0;
 }
 
-.button--blue {
-  display: inline-block;
-  border-radius: 4px;
-  border: 2px solid #0a6095;
-  color: #0a6095;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--blue:hover {
-  color: #fff;
-  background-color: #0a6095;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 2px solid #3b8070;
-  color: #3b8070;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 2px solid #35495e;
-  color: #35495e;
-  font-weight: 700;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
-
 .container {
   margin: 0 auto;
   min-height: 100vh;
