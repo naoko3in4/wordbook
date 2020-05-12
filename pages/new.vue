@@ -1,7 +1,7 @@
 <template>
   <div class="container new_wrapper">
-    <nuxt-link :to="{ name: 'index' }" class="button--grey back__btn new-back">
-      戻る
+    <nuxt-link :to="{ name: 'index' }">
+      <app-button color="grey" text="戻る" class="new-back" />
     </nuxt-link>
     <form class="register__container">
       <label for="単語">
@@ -42,24 +42,29 @@
           placeholder="正解率"
         />
       </label> -->
-      <button
-        type="submit"
-        class="button--green send__btn"
+      <app-button
+        color="green"
+        size="large"
+        text="送信"
+        class="send__btn"
         @click.prevent="postWord()"
-      >
-        送信
-      </button>
+      />
     </form>
   </div>
 </template>
 
 <script>
+import AppButton from '@/components/AppButton.vue'
+
 const contentful = require('contentful-management')
 const client = contentful.createClient({
   accessToken: process.env.CTF_FOR_MY_APP_TOKEN
 })
 
 export default {
+  components: {
+    AppButton
+  },
   data() {
     return {
       formData: {
@@ -138,6 +143,5 @@ export default {
 
 .send__btn {
   margin: 0 auto;
-  width: 200px;
 }
 </style>

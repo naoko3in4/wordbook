@@ -14,16 +14,20 @@
       </ul>
     </div>
 
-    <nuxt-link :to="{ name: 'index' }" class="button--grey back__btn">
-      戻る
+    <nuxt-link :to="{ name: 'index' }">
+      <app-buttton color="grey" text="戻る" />
     </nuxt-link>
   </div>
 </template>
 
 <script>
 import contentfulClient from '@/plugins/contentful'
+import AppButtton from '@/components/AppButton.vue'
 
 export default {
+  components: {
+    AppButtton
+  },
   asyncData({ env }) {
     return contentfulClient
       .getEntries()

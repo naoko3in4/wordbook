@@ -7,13 +7,12 @@
       </h1>
       <div v-if="contentsCreatedAtYesterday.length > 0">
         <div>
-          <button
-            class="button--blue"
+          <app-button
+            color="blue"
+            text="テストスタート"
             :class="{ isStarted: isStartActive }"
             @click="testStart()"
-          >
-            テストスタート
-          </button>
+          />
         </div>
 
         <div v-if="isShown">
@@ -35,11 +34,11 @@
       </div>
 
       <div class="links">
-        <nuxt-link :to="{ name: 'new' }" class="button--green">
-          新しく登録する
+        <nuxt-link :to="{ name: 'new' }">
+          <app-button color="green" size="x_small" text="新しく登録する" />
         </nuxt-link>
-        <nuxt-link :to="{ name: 'all' }" class="button--grey">
-          登録単語一覧
+        <nuxt-link :to="{ name: 'all' }">
+          <app-button color="grey" text="登録単語一覧" />
         </nuxt-link>
       </div>
     </div>
@@ -47,13 +46,13 @@
 </template>
 
 <script>
-// import Logo from '@/components/Logo.vue'
+import AppButton from '@/components/AppButton.vue'
 import contentfulClient from '@/plugins/contentful'
 import moment from '@/plugins/moment'
 
 export default {
   components: {
-    // Logo
+    AppButton
   },
   asyncData({ env }) {
     return contentfulClient
@@ -128,6 +127,8 @@ export default {
 
 .links {
   padding-top: 15px;
+  display: flex;
+  justify-content: space-around;
 }
 
 .isStarted {
