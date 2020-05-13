@@ -37,7 +37,7 @@
         <nuxt-link :to="{ name: 'new' }">
           <app-button color="green" size="x_small" text="新しく登録する" />
         </nuxt-link>
-        <nuxt-link :to="{ name: 'all' }">
+        <nuxt-link :to="{ name: 'posts' }">
           <app-button color="grey" text="登録単語一覧" />
         </nuxt-link>
       </div>
