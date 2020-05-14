@@ -109,12 +109,9 @@ export default {
       //   console.error(res)
       //   return
       // }
-      console.log(res)
-      this.formData.word = await null
-      this.formData.meaning = await null
-      this.formData.appearanceCount = await null
-      this.formData.correctCount = await null
-      this.formData.correctRate = await null
+      Object.keys(this.formData).map((key) => {
+        this.formData[key] = null
+      })
     }
   }
 }

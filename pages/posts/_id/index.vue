@@ -1,27 +1,31 @@
 <template>
   <div class="container new_wrapper">
-    <h1>編集ページです</h1>
-    <!-- <p>{{ $route.params.id }}</p> -->
-    <nuxt-link :to="{ name: 'index' }">
+    <!-- <h2 class="list-title">編集する</h2> -->
+    <nuxt-link :to="{ name: 'posts' }">
       <app-button color="grey" text="戻る" class="new-back" />
     </nuxt-link>
     <form class="register__container">
-      <label for="単語">
-        <input
-          v-model="formData.word"
-          type="text"
-          placeholder="単語を入力"
-          class="write__item"
-        />
-      </label>
-      <label for="意味">
-        <input
-          v-model="formData.meaning"
-          type="text"
-          placeholder="意味を入力"
-          class="write__item"
-        />
-      </label>
+      <div class="edit__wrapper">
+        <label for="単語">
+          <p class="edit__text">編集する</p>
+          <input
+            v-model="formData.word"
+            type="text"
+            placeholder="単語を入力"
+            class="write__item"
+          />
+        </label>
+        <label for="意味">
+          <p class="edit__text">編集する</p>
+          <input
+            v-model="formData.meaning"
+            type="text"
+            placeholder="意味を入力"
+            class="write__item"
+          />
+        </label>
+      </div>
+
       <!-- 今後活用するかも -->
       <!-- <label for="出題回数">
         <input
@@ -46,10 +50,16 @@
       </label> -->
       <app-button
         color="green"
-        size="large"
-        text="送信"
-        class="send__btn"
+        size="medium"
+        text="編集送信"
+        class="edit-send"
         @click.prevent="postWord()"
+      />
+      <app-button
+        color="blue"
+        size="medium"
+        text="単語削除"
+        @click.prevent="deleteWord()"
       />
     </form>
   </div>
@@ -70,7 +80,10 @@ export default {
   async asyncData({ route }) {
     const entryId = route.params.id
     const mySpace = await client.getSpace(process.env.CTF_SPACE_ID)
-    const entry = await mySpace.getEntry(entryId)
+    const myEnvironment = await mySpace.getEnvironment(
+      process.env.CTF_ENVIRONMENT_ID
+    )
+    const entry = await myEnvironment.getEntry(entryId)
     return {
       entry
     }
@@ -102,12 +115,16 @@ export default {
       const updateEntry = await this.entry.update()
       await updateEntry.publish()
 
-      console.log(this.entry)
-      this.formData.word = null
-      this.formData.meaning = null
-      this.formData.appearanceCount = null
-      this.formData.correctCount = null
-      this.formData.correctRate = null
+      Object.keys(this.formData).map((key) => {
+        this.formData[key] = null
+      })
+    },
+    async deleteWord() {
+      const unpublishPost = await this.entry.unpublish()
+      await unpublishPost.delete()
+      Object.keys(this.formData).map((key) => {
+        this.formData[key] = null
+      })
     }
   }
 }
@@ -119,22 +136,33 @@ export default {
 }
 
 .register__container {
+  width: 180px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
 }
 
 .new-back {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .write__item {
   padding: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 7px;
 }
 
-.send__btn {
-  margin: 0 auto;
+.edit__text {
+  text-align: left;
+  font-size: 13px;
+  color: #0a6095;
+}
+
+.edit__wrapper {
+  margin-bottom: 15px;
+}
+
+.edit-send {
+  margin-bottom: 10px;
 }
 </style>
