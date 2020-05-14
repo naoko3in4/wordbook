@@ -70,7 +70,10 @@ export default {
   async asyncData({ route }) {
     const entryId = route.params.id
     const mySpace = await client.getSpace(process.env.CTF_SPACE_ID)
-    const entry = await mySpace.getEntry(entryId)
+    const myEnvironment = await mySpace.getEnvironment(
+      process.env.CTF_ENVIRONMENT_ID
+    )
+    const entry = await myEnvironment.getEntry(entryId)
     return {
       entry
     }
