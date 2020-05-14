@@ -107,6 +107,10 @@ export default {
   padding: 10px 25px;
 }
 
+.is_medium {
+  padding: 10px 55px;
+}
+
 .is_large {
   padding: 10px 70px;
 }

@@ -35,4 +35,12 @@ html {
 .back__btn {
   margin: 0 auto;
 }
+
+.list-title {
+  font-weight: 700;
+  font-size: 20px;
+  color: #35495e;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
 </style>

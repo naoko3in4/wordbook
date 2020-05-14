@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     goToEditPage(id) {
-      console.log('id', id)
       this.$router.push({
         path: `posts/${id}`
       })
@@ -74,21 +73,14 @@ export default {
 }
 
 .all_word-list {
-  /* text-align: left; */
   display: flex;
   justify-content: space-between;
 }
 
-.list-title {
-  font-weight: 700;
-  font-size: 20px;
-  color: #35495e;
-  letter-spacing: 1px;
-  margin-bottom: 15px;
-}
-
 .word__wrapper {
   line-height: 30px;
+  white-space: nowrap;
+  overflow: scroll;
 }
 
 .registerd_word {
@@ -108,5 +100,12 @@ export default {
   text-align: center;
   color: #b9babb;
   border: 1px solid #b9babb;
+}
+
+.edit-btn:hover {
+  background: #d6d7d8;
+  border: 1px solid #d6d7d8;
+  color: #fff;
+  cursor: pointer;
 }
 </style>
