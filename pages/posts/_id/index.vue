@@ -103,11 +103,10 @@ export default {
       await updateEntry.publish()
 
       console.log(this.entry)
-      this.formData.word = null
-      this.formData.meaning = null
-      this.formData.appearanceCount = null
-      this.formData.correctCount = null
-      this.formData.correctRate = null
+
+      Object.keys(this.formData).map((key) => {
+        this.formData[key] = null
+      })
     }
   }
 }
