@@ -1,7 +1,7 @@
 <template>
-  <div class="container index__wrapper flex">
+  <div class="container flex justify-center">
     <div>
-      <h1 class="title text-6xl font-light tracking-wider block">
+      <h1 class="title text-blue-800 text-6xl font-light tracking-wider block">
         wordbook
       </h1>
       <div v-if="contentsCreatedAtYesterday.length > 0">
@@ -18,22 +18,22 @@
           <ul
             v-for="(content, index) in contentsCreatedAtYesterday"
             :key="content.sys.id"
-            class="max-w-sm rounded overflow-hidden shadow-lg content__wrapper"
+            class="max-w-sm rounded overflow-hidden shadow-lg my-0 mx-0"
           >
             <li class="px-6 py-4" @click="deleteWord(index)">
               <p class="font-bold text-xl mb-2">
                 {{ content.fields.word
-                }}<span class="delete-btn text-sm ml-2 font-bold">✗</span>
+                }}<span class="text-blue-700 text-sm ml-2 font-bold">✗</span>
               </p>
             </li>
           </ul>
         </div>
       </div>
       <div v-else>
-        <p class="no-word-text mb-2 font-bold">回答できる単語はありません</p>
+        <p class="text-blue-700 mb-2 font-bold">回答できる単語はありません</p>
       </div>
 
-      <div class="links pt-3 flex">
+      <div class="pt-3 flex justify-around">
         <nuxt-link :to="{ name: 'new' }">
           <app-button color="green" size="x_small" text="新しく登録する" />
         </nuxt-link>
@@ -106,30 +106,12 @@ export default {
 /* Quicksand font */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
 
-.index__wrapper {
-  justify-content: center;
-}
-
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  color: #35495e;
-}
-
-.content__wrapper {
-  margin: 0 auto;
-}
-
-.links {
-  justify-content: space-around;
 }
 
 .isStarted {
   display: none;
-}
-
-.delete-btn,
-.no-word-text {
-  color: #0a6095;
 }
 </style>

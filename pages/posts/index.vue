@@ -1,17 +1,22 @@
 <template>
-  <div class="container all__wrapper">
+  <div class="container pt-20">
     <h2 class="list-title">登録単語一覧</h2>
-    <div class="all_word_list__wrapper">
+    <div
+      class="all_word_list__wrapper max-w-xs my-0 mx-auto mb-6 p-5 pb-8 rounded-lg overflow-scroll bg-white"
+    >
       <div
         v-for="content in contents"
         :key="content.sys.id"
-        class="all_word-list"
+        class="all_word-list flex justify-between"
       >
-        <div class="word__wrapper">
-          <span class="registerd_word">{{ content.fields.word }}</span
-          ><span class="registerd_meaning">:{{ content.fields.meaning }}</span>
+        <div class="leading-8 whitespace-no-wrap overflow-scroll">
+          <span class="text-blue-700 font-bold">{{ content.fields.word }}</span
+          ><span class="text-sm">:{{ content.fields.meaning }}</span>
         </div>
-        <div class="edit-btn" @click="goToEditPage(content.sys.id)">
+        <div
+          class="edit-btn w-10 leading-8 rounded-md text-center text-gray-500 border border-gray-400"
+          @click="goToEditPage(content.sys.id)"
+        >
           編集
         </div>
       </div>
@@ -52,59 +57,20 @@ export default {
 </script>
 
 <style>
-.all__wrapper {
-  padding-top: 80px;
-}
-
 .all_word-list {
-  border-bottom: 1px solid #d6d7d8;
+  border-bottom: 1px solid #cbd5e0;
 }
 
 .all_word_list__wrapper {
-  margin: 0 auto;
-  max-width: 350px;
   max-height: 450px;
-  overflow: scroll;
-  margin-bottom: 30px;
-  background: #fff;
-  padding: 20px;
-  padding-bottom: 35px;
-  border-radius: 9px;
-}
-
-.all_word-list {
-  display: flex;
-  justify-content: space-between;
-}
-
-.word__wrapper {
-  line-height: 30px;
-  white-space: nowrap;
-  overflow: scroll;
-}
-
-.registerd_word {
-  font-weight: 700;
-  color: #0a6095;
-}
-
-.registerd_meaning {
-  font-size: 14px;
 }
 
 .edit-btn {
-  width: 40px;
   font-size: 11px;
-  line-height: 30px;
-  border-radius: 5px;
-  text-align: center;
-  color: #b9babb;
-  border: 1px solid #b9babb;
 }
 
 .edit-btn:hover {
-  background: #d6d7d8;
-  border: 1px solid #d6d7d8;
+  background: #cbd5e0;
   color: #fff;
   cursor: pointer;
 }

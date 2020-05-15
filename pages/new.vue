@@ -1,15 +1,15 @@
 <template>
-  <div class="container new_wrapper">
+  <div class="container pt-48">
     <nuxt-link :to="{ name: 'index' }">
-      <app-button color="grey" text="戻る" class="new-back" />
+      <app-button color="grey" text="戻る" class="mb-5" />
     </nuxt-link>
-    <form class="register__container">
+    <form class="my-0 mx-auto flex flex-col">
       <label for="単語">
         <input
           v-model="formData.word"
           type="text"
           placeholder="単語を入力"
-          class="write__item"
+          class="p-1 mb-5 rounded-md"
         />
       </label>
       <label for="意味">
@@ -17,7 +17,7 @@
           v-model="formData.meaning"
           type="text"
           placeholder="意味を入力"
-          class="write__item"
+          class="p-1 mb-5 rounded-md"
         />
       </label>
       <!-- 今後活用するかも -->
@@ -46,7 +46,7 @@
         color="green"
         size="large"
         text="送信"
-        class="send__btn"
+        class="my-0 mx-auto"
         @click.prevent="postWord()"
       />
     </form>
@@ -116,29 +116,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.new_wrapper {
-  padding-top: 200px;
-}
-
-.register__container {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.new-back {
-  margin-bottom: 20px;
-}
-
-.write__item {
-  padding: 5px;
-  margin-bottom: 20px;
-  border-radius: 7px;
-}
-
-.send__btn {
-  margin: 0 auto;
-}
-</style>
