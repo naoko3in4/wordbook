@@ -1,14 +1,13 @@
 <template>
-  <div class="container index__wrapper">
+  <div class="container flex justify-center">
     <div>
-      <!-- <logo /> -->
-      <h1 class="title">
+      <h1 class="title text-blue-800 text-6xl font-light tracking-wider block">
         wordbook
       </h1>
       <div v-if="contentsCreatedAtYesterday.length > 0">
         <div>
           <app-button
-            color="blue"
+            color="blue mb-1"
             text="テストスタート"
             :class="{ isStarted: isStartActive }"
             @click="testStart()"
@@ -19,21 +18,22 @@
           <ul
             v-for="(content, index) in contentsCreatedAtYesterday"
             :key="content.sys.id"
-            class="max-w-sm rounded overflow-hidden shadow-lg content__wrapper"
+            class="max-w-sm rounded overflow-hidden shadow-lg my-0 mx-0"
           >
             <li class="px-6 py-4" @click="deleteWord(index)">
               <p class="font-bold text-xl mb-2">
-                {{ content.fields.word }}<span class="delete-btn">✗</span>
+                {{ content.fields.word
+                }}<span class="text-blue-700 text-sm ml-2 font-bold">✗</span>
               </p>
             </li>
           </ul>
         </div>
       </div>
       <div v-else>
-        <p class="no-word-text">回答できる単語はありません</p>
+        <p class="text-blue-700 mb-2 font-bold">回答できる単語はありません</p>
       </div>
 
-      <div class="links">
+      <div class="pt-3 flex justify-around">
         <nuxt-link :to="{ name: 'new' }">
           <app-button color="green" size="x_small" text="新しく登録する" />
         </nuxt-link>
@@ -106,45 +106,12 @@ export default {
 /* Quicksand font */
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap');
 
-.index__wrapper {
-  display: flex;
-  justify-content: center;
-}
-
 .title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 65px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.content__wrapper {
-  margin: 0 auto;
-}
-
-.links {
-  padding-top: 15px;
-  display: flex;
-  justify-content: space-around;
 }
 
 .isStarted {
   display: none;
-}
-
-.delete-btn {
-  margin-left: 10px;
-  color: #0a6095;
-  font-size: 14px;
-  font-weight: 700;
-}
-
-.no-word-text {
-  margin-bottom: 10px;
-  color: #0a6095;
-  font-weight: 700;
 }
 </style>

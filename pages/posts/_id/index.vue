@@ -1,30 +1,27 @@
 <template>
-  <div class="container new_wrapper">
-    <!-- <h2 class="list-title">編集する</h2> -->
+  <div class="container pt-48">
     <nuxt-link :to="{ name: 'posts' }">
-      <app-button color="grey" text="戻る" class="new-back" />
+      <app-button color="grey" text="戻る" class="mb-3" />
     </nuxt-link>
-    <form class="register__container">
-      <div class="edit__wrapper">
-        <label for="単語">
-          <p class="edit__text">編集する</p>
-          <input
-            v-model="formData.word"
-            type="text"
-            placeholder="単語を入力"
-            class="write__item"
-          />
-        </label>
-        <label for="意味">
-          <p class="edit__text">編集する</p>
-          <input
-            v-model="formData.meaning"
-            type="text"
-            placeholder="意味を入力"
-            class="write__item"
-          />
-        </label>
-      </div>
+    <form class="register__container my-0 mx-auto flex flex-col">
+      <label for="単語">
+        <p class="text-blue-700 text-xs text-left">編集する</p>
+        <input
+          v-model="formData.word"
+          type="text"
+          placeholder="単語を入力"
+          class="p-1 mb-2 rounded-md"
+        />
+      </label>
+      <label for="意味">
+        <p class="text-blue-700 text-xs text-left">編集する</p>
+        <input
+          v-model="formData.meaning"
+          type="text"
+          placeholder="意味を入力"
+          class="p-1 mb-5 rounded-md"
+        />
+      </label>
 
       <!-- 今後活用するかも -->
       <!-- <label for="出題回数">
@@ -52,7 +49,7 @@
         color="green"
         size="medium"
         text="編集送信"
-        class="edit-send"
+        class="mb-3"
         @click.prevent="postWord()"
       />
       <app-button
@@ -131,38 +128,7 @@ export default {
 </script>
 
 <style>
-.new_wrapper {
-  padding-top: 200px;
-}
-
 .register__container {
   width: 180px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-}
-
-.new-back {
-  margin-bottom: 10px;
-}
-
-.write__item {
-  padding: 5px;
-  margin-bottom: 10px;
-  border-radius: 7px;
-}
-
-.edit__text {
-  text-align: left;
-  font-size: 13px;
-  color: #0a6095;
-}
-
-.edit__wrapper {
-  margin-bottom: 15px;
-}
-
-.edit-send {
-  margin-bottom: 10px;
 }
 </style>
